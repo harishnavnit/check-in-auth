@@ -8,6 +8,9 @@ class BasicUser(models.Model):
         self.user_email = models.CharField(max_length=200)
         self.user_pass = models.CharField(max_length=200)
 
+    def __str__(self):
+        return self.user_email
+
     def get_user_name(self):
         return user_name
 
