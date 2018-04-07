@@ -6,5 +6,5 @@ from . import views
 app_name = 'auths'
 urlpatterns = [
     # localhost:8000/login
-    path('', views.login, name='login'),
+    path('', views.LoginView.as_view(), name='login'),
 ]
