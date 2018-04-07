@@ -15,9 +15,8 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'auths/css/util.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'auths/css/main.css' %}" />
 </head>
-<body>
 
-	{% load static %}
+<body>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
@@ -25,6 +24,7 @@
 					<img src="{% static 'auths/images/img-01.png' %}" alt="IMG">
 				</div>
 
+				{% if not authenticated %}
 				<form class="login100-form validate-form">
 					<span class="login100-form-title">Genuine people Genuine places</span>
 
@@ -60,6 +60,7 @@
 						</a>
 					</div>
 				</form>
+				{% endif %}
 			</div>
 		</div>
 	</div>
