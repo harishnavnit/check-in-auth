@@ -1,6 +1,5 @@
 from django.views import View
 from django.shortcuts import render
-from django.http import HttpResponse
 
 from auths.models import BasicUser
 
