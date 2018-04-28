@@ -3,8 +3,9 @@ from django.db import models
 
 class BasicUser(models.Model):
 
-    user_email = models.CharField(max_length=200, default="example@example.com")
-    user_pass  = models.CharField(max_length=200, default="example_pass")
+    user_email = models.CharField(max_length=200,
+                                  default="example@example.com")
+    user_pass = models.CharField(max_length=200, default="example_pass")
 
     def __str__(self):
         return self.user_email

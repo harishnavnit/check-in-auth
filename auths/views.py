@@ -16,15 +16,14 @@ class LoginView(View):
             return False
         return True
 
-
     def get(self, request):
         try:
             user_email = request.GET['email']
-            user_pass  = request.GET['pass']
+            user_pass = request.GET['pass']
 
             self.authenticated = self.authenticate(user_email, user_pass)
         except KeyError as err:
             print("email/password not provided : ", err)
 
         return render(request, self.template_name,
-                     {'authenticated': self.authenticated})
+                      {'authenticated': self.authenticated})
