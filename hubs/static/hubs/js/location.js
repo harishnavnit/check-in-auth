@@ -33,7 +33,7 @@ if (navigator.geolocation) {
             $.ajax({
                     type: "POST",
                     url: "locations",
-                    data: { coordinates: position},
+                    data: position,
                     success: function(data) {
                         console.log("AJAX request sent successfully : " + data)
                         console.log("CSRF token : " + csrftoken)
