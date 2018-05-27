@@ -13,11 +13,14 @@ function getCookie(name) {
     return cookieValue;
 }
 
-var csrftoken = getCookie('csrftoken');
 function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
+
+
+var csrftoken = getCookie('csrftoken');
+
 $.ajaxSetup({
     beforeSend: function(xhr, settings) {
         if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
@@ -29,16 +32,11 @@ $.ajaxSetup({
 if (navigator.geolocation) {
     window.onload = function() {
         navigator.geolocation.getCurrentPosition(function(position) {
-            document.getElementById('locationDisplay').innerHTML = position.coords.latitude + "," + position.coords.longitude
-            $.ajax({
-                    type: "POST",
-                    url: "locations",
-                    data: position,
-                    success: function(data) {
-                        console.log("AJAX request sent successfully : " + data)
-                        console.log("CSRF token : " + csrftoken)
-                    }
-            });
+            positionStr = position.coords.latitude + "," + position.coords.longitude
+            document.getElementById('locationDisplay').innerHTML = positionStr
+
+            // Send a request with the current location to the server
+            $.ajax({ type: "POST", url: "locations", data: position });
         });
     }
 } else {
