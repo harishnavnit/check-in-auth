@@ -1,18 +1,18 @@
+from django.views import View
 from django.shortcuts import render
 from django.http import HttpResponse
 
 
-current_location = {}
+class LocationView(View):
+    current_location = {}
+    template_name = 'hubs/location.html'
 
+    def get(self, request):
+        return render(request, self.template_name)
 
-def index(request):
-    return render(request, 'hubs/location.html')
+    def post(self, request):
+        self.current_location['latitude'] = request.POST['coords[latitude]']
+        self.current_location['longitude'] = request.POST['coords[longitude]']
+        self.current_location['timestamp'] = request.POST['timestamp']
 
-
-def locations(request):
-    if request.method == "POST":
-        current_location['latitude'] = request.POST['coords[latitude]']
-        current_location['longitude'] = request.POST['coords[longitude]']
-        current_location['timestamp'] = request.POST['timestamp']
-
-    return HttpResponse(status=200)
+        return HttpResponse(status=200)
