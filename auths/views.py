@@ -1,7 +1,7 @@
 from django.views import View
 from django.shortcuts import render
 
-from auths.models import BasicUser
+from auths.models import AuthUser
 
 
 class LoginView(View):
@@ -10,8 +10,8 @@ class LoginView(View):
 
     def authenticate(self, user_email, user_pass):
         try:
-            BasicUser.objects.get(user_email=user_email, user_pass=user_pass)
-        except BasicUser.DoesNotExist:
+            AuthUser.objects.get(user_email=user_email, user_pass=user_pass)
+        except AuthUser.DoesNotExist:
             print("User not found")
             return False
         return True
